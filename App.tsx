@@ -29,6 +29,9 @@ import SignUpScreen from './src/Auth/Screen/SignUpScreen';
 import ForgotPassword from './src/Auth/Screen/ForgotPassword';
 import Login from './src/Auth/Screen/Login';
 import Home from './src/Home/Home';
+import Profile from './src/Profile/Screen/Profile';
+import Discover from './src/Discover/Screen/Discover';
+import Notification from './src/Notification/Screens/Notification';
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
@@ -70,7 +73,10 @@ function App(): React.JSX.Element {
    <SafeAreaView className='flex-1'>
     {/* <ForgotPassword/> */}
     {/* <Login/> */}
-    <Home/>
+    {/* <Home/> */}
+    {/* <Profile/> */}
+    {/* <Discover/> */}
+    <Notification/>
    </SafeAreaView>
   );
 }
