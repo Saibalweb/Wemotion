@@ -25,7 +25,7 @@ interface FormErrors {
   password?: string;
 }
 
-export default function SignUpScreen()  {
+export default function SignUp()  {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     firstName: '',

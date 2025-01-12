@@ -25,13 +25,15 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import "./global.css"
-import SignUpScreen from './src/Auth/Screen/SignUpScreen';
+import SignUp from './src/Auth/Screen/SignUp';
 import ForgotPassword from './src/Auth/Screen/ForgotPassword';
 import Login from './src/Auth/Screen/Login';
-import Home from './src/Home/Home';
+import Home from './src/Home/Screen/Home';
 import Profile from './src/Profile/Screen/Profile';
 import Discover from './src/Discover/Screen/Discover';
 import Notification from './src/Notification/Screens/Notification';
+import { NavigationContainer } from '@react-navigation/native';
+import { MainApp } from './Navigation';
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
@@ -71,12 +73,9 @@ function App(): React.JSX.Element {
 
   return (
    <SafeAreaView className='flex-1'>
-    {/* <ForgotPassword/> */}
-    {/* <Login/> */}
-    {/* <Home/> */}
-    {/* <Profile/> */}
-    {/* <Discover/> */}
-    <Notification/>
+    <NavigationContainer>
+        <MainApp/>
+    </NavigationContainer>
    </SafeAreaView>
   );
 }

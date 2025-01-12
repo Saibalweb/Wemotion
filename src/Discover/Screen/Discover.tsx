@@ -9,7 +9,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {Search} from 'lucide-react-native';
+import {Search,Video} from 'lucide-react-native';
 
 export default function Discover() {
   // Mock data for grid items

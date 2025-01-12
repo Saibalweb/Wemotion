@@ -119,25 +119,6 @@ export default function Profile() {
           {[...Array(9)].map((_, index) => renderGridItem(index))}
         </View>
       </ScrollView>
-
-      {/* Bottom Navigation */}
-      <View className="flex-row justify-around py-2 border-t border-gray-800">
-        <TouchableOpacity>
-          <Home size={24} color="white" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Search size={24} color="white" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <PlusCircle size={32} color="white" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Bell size={24} color="white" />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <User size={24} color="purple" />
-        </TouchableOpacity>
-      </View>
     </SafeAreaView>
   );
 }

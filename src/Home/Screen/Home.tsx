@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -7,15 +7,23 @@ import {
   StatusBar,
   Image,
 } from 'react-native';
-import Video from 'react-native-video';
+import Video,{VideoRef} from 'react-native-video';
 import { Heart, MessageCircle, Share2, MoreVertical } from 'lucide-react-native';
-import FeedBtn from './Components/FeedBtn';
-import UserInfo from './Components/UserInfo';
+import FeedBtn from '../Components/FeedBtn';
+import UserInfo from '../Components/UserInfo';
+const videos = [
+  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+  "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+ ];
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('trending');
-  const [isPlaying, setIsPlaying] = useState(true);
-
+  const [paused, setPaused] = useState(false);
+  const videoRef = useRef<VideoRef>(null);
+  console.log(JSON.stringify(videoRef,null,2))
   return (
     <SafeAreaView className="flex-1 bg-black">
       <StatusBar barStyle="light-content" />
@@ -42,17 +50,19 @@ export default function Home() {
 
       {/* Video Content */}
       <View className="flex-1">
+        <TouchableOpacity onPress={()=>setPaused(prevState=>!prevState)} className='flex-1'>
         <Video
+          ref={videoRef}
           source={{ uri: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' }}
           rate={1.0}
           volume={1.0}
           muted={false}
           resizeMode="contain"
-          paused={true}
+          paused={paused}
           repeat={false}
           style={{flex:1}}
         />
-
+        </TouchableOpacity>
         {/* Progress Bar */}
         <View className="absolute top-0 left-0 right-0 h-1 bg-gray-800">
           <View className="h-full bg-white w-1/2" />
