@@ -12,7 +12,7 @@ const isLoggedIn = true;
 const Tab = createBottomTabNavigator();
 const CustomTabBar = ({state, descriptors, navigation}) => {
   return (
-    <View className="flex-row bg-[#2C2C2C]">
+    <View className="flex-row bg-black">
       {state.routes.map((route, index: Number) => {
         const {options} = descriptors[route.key];
         const isFocused = state.index === index;
