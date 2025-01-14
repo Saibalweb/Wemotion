@@ -7,7 +7,7 @@ interface UserInfoProp {
 }
 export default function UserInfo({userName,uri,caption}:UserInfoProp) {
   return (
-    <View className="absolute bottom-8 left-4 right-20">
+    <View className="absolute bottom-28 left-4 right-20">
       <View className="flex-row items-center space-x-2">
         <Image
           source={{uri: 'https://i.pravatar.cc/300'}}

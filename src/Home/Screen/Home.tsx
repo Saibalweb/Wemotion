@@ -9,11 +9,8 @@ import {
   FlatList,
   Dimensions,
 } from 'react-native';
-import Video,{VideoRef} from 'react-native-video';
-import { Heart, MessageCircle, Share2, MoreVertical } from 'lucide-react-native';
-import FeedBtn from '../Components/FeedBtn';
-import UserInfo from '../Components/UserInfo';
 import VideoItem from '../Components/VideoItem';
+const SCREEN_HEIGHT = Dimensions.get('window').height-50;
 const videos = [
   "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
   "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
@@ -24,6 +21,17 @@ const videos = [
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('trending');
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const viewabilityConfig = {
+    itemVisiblePercentThreshold: 50, // Adjust threshold percentage
+    minimumViewTime: 100, // Minimum time in ms item needs to be visible
+  }
+
+const onViewableItemsChanged = ({viewableItems, changed}) => {
+  if(viewableItems.length > 0 && viewableItems[0].index !== currentVideoIndex && viewableItems[0].isViewable){
+    setCurrentVideoIndex(viewableItems[0].index);
+  }
+}
   return (
     <SafeAreaView className="flex-1 bg-black">
       <StatusBar barStyle="light-content" />
@@ -52,12 +60,18 @@ export default function Home() {
       <FlatList
       data={videos}
       keyExtractor={(item, index) => index.toString()}
-      renderItem={({item}) => <VideoItem videoUri={item} />}
+      renderItem={({item,index}) => <VideoItem videoUri={item} index= {index} currentVideoIndex={currentVideoIndex}/>}
       snapToAlignment="start"
-      decelerationRate={0.95}
-      snapToInterval={Dimensions.get('window').height-50}
+      decelerationRate={0.9}
+      snapToInterval={SCREEN_HEIGHT}
+      viewabilityConfig={viewabilityConfig}
+      onViewableItemsChanged={onViewableItemsChanged}
       pagingEnabled
       style={{flex:1}}
+      maxToRenderPerBatch={2}
+      windowSize={3}
+      removeClippedSubviews={true}
+      disableIntervalMomentum={true}
       />
     </SafeAreaView>
   );
